@@ -1,19 +1,26 @@
-import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import { useState } from 'react';
-import TextInput from '@/components/TextInput';
-import SubmitButton from '@/components/SubmitButton';
-import ResponseDisplay from '@/components/ResponseDisplay';
-import useApi from '@/hooks/useApi';
+import Head from "next/head";
+import { Inter } from "next/font/google";
+import { useState } from "react";
+import TextInput from "@/components/TextInput";
+import SubmitButton from "@/components/SubmitButton";
+import ResponseDisplay from "@/components/ResponseDisplay";
+import useApi from "@/hooks/useApi";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [inputValue, setInputValue] = useState('');
-  const [submitValue, setSubmitValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [topic, setTopic] = useState("poam");
+  const [submitValue, setSubmitValue] = useState("");
   const [userMessages, setUserMessages] = useState([]);
   const [assistantMessages, setAssistantMessages] = useState([]);
-  const { data, error, loading } = useApi('/api/openai', 'POST', submitValue, userMessages, assistantMessages);
+  const { data, error, loading } = useApi(
+    "/api/openai",
+    "POST",
+    { topic, description: submitValue },
+    userMessages,
+    assistantMessages
+  );
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,12 +45,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <h1 className={inter.className}>NextJS OpenAI Boilerplate</h1>
-        <p className={inter.className}> Test this boilerplate with a prompt, such as a request for a pet name, and the AI will respond while keeping track of the conversation.
-        </p>
+        <h1 className={inter.className}>Poam and short stories generator</h1>
         <form>
           <ResponseDisplay data={data} error={error} loading={loading} />
-          <TextInput value={inputValue} onChange={handleInputChange} />
+          <label>Topic</label>
+          <select
+            className="text-input"
+            onChange={(e) => setTopic(e.target.value)}
+          >
+            <option value="poem">Poem</option>
+            <option value="short story">short story</option>
+          </select>
+          <TextInput
+            value={inputValue}
+            onChange={handleInputChange}
+            suggention={topic}
+          />
           <SubmitButton onClick={handleSubmit} disabled={loading} />
         </form>
       </main>

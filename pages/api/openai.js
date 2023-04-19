@@ -11,8 +11,6 @@ const configuration = new Configuration({
 // Create an instance of the OpenAIApi using the configuration
 const openai = new OpenAIApi(configuration);
 
-console.log("API Key:", process.env.OPENAI_API_KEY);
-
 /**
  * Handle the API request
  * @param {object} req - The HTTP request object
@@ -35,7 +33,7 @@ export default async function (req, res) {
   console.log("The payload is: ", payload);
 
   // Check if the payload is empty
-  if (payload.trim().length === 0) {
+  if (payload.description.trim().length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid input",
@@ -49,9 +47,17 @@ export default async function (req, res) {
 
   try {
     // Create a user message object
+    let filterMessage = `
+    Create a ${payload.topic} that explores ${payload.description}. 
+    It could be a personal experience, a social issue, an abstract concept, or a moment of inspiration. 
+    Use your poetic voice to convey the emotions, imagery, and depth of meaning associated with your chosen topic.
+    Experiment with different poetic forms, techniques, and styles to create a unique and expressive piece of art. 
+    Let your imagination soar and your words flow freely as you craft a poem that reflects your thoughts, feelings, and perspective on your chosen subject
+    
+    `
     const userMessage = {
       role: "user",
-      content: payload,
+      content: filterMessage,
     };
 
     // Combine default prompts, user messages, and assistant messages into an array of messages

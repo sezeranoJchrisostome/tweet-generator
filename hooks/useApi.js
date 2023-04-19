@@ -46,7 +46,7 @@ const useApi = (url, method, payload, userMessages, assistantMessages) => {
     if (payload) {
       fetchData(); // Call fetchData only if payload is provided
     }
-  }, [url, method, payload, userMessages, assistantMessages]);
+  }, [url, method, payload.topic, payload.description, userMessages, assistantMessages]);
 
   // Return the data, error, and loading states from the hook
   return { data, error, loading };
