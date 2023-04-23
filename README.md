@@ -2,7 +2,7 @@
 
 ## Steps
 
-1. Getting started with Next.js OpenAI Boilerplate
+### Getting started with Next.js OpenAI Boilerplate
 
 -  Clone this repository:
     > `git clone https://github.com/moritzfelipe/nextjs-openai-boilerplate.git tweet-generator`
@@ -23,13 +23,13 @@
 -  Open your browser 
     > navigate to [http://localhost:3000](http://localhost:3000/). You should now see the boilerplate application running.
 
-2. Add custom designs
+### Add custom designs
 
     >  Inside styles/globals.css replace the css written there with this
     [styles here](https://github.com/sezeranoJchrisostome/tweet-generator/blob/main/styles/globals.css)
 
 
-3.  Customize response-display.
+###  Customize response-display.
 
 ```jsx
     <div className="response-display">
@@ -49,7 +49,7 @@
     </div>
 ```
 
-4. Create your custom prompt.
+### Create your custom prompt.
 
    - Inside prompts/defaultPrompts.js change `defaultPrompts` value to this:
 ```js
