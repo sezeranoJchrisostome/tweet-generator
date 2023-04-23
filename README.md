@@ -23,8 +23,8 @@
 -  Open your browser 
     > navigate to [http://localhost:3000](http://localhost:3000/). You should now see the boilerplate application running.
 
-### Add custom designs
-    > Inside styles/globals.css replace the css written there with this [styles here](https://github.com/sezeranoJchrisostome/tweet-generator/blob/main/styles/globals.css)
+### Add custom designs.
+  > Inside styles/globals.css replace the css written there with this [styles here](https://github.com/sezeranoJchrisostome/tweet-generator/blob/main/styles/globals.css)
 
 ###  Customize response-display.
 
