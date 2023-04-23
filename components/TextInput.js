@@ -6,7 +6,7 @@ const TextInput = ({ value, onChange, suggention }) => {
       value={value}
       onChange={onChange}
       className="text-input"
-      placeholder={`What do you want to generate about...?`}
+      placeholder={`What do you want to tweet about...?`}
     />
   );
 };

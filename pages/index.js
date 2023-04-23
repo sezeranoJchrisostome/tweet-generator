@@ -46,7 +46,7 @@ export default function Home() {
       </Head>
       <main className="container">
         <div className="form-container">
-          <h1 className={inter.className}>tweet Generator 🚀</h1>
+          <h1 className={inter.className}>Tweet Generator 🚀</h1>
           <form>
             <ResponseDisplay data={data} error={error} loading={loading} />
             <TextInput
