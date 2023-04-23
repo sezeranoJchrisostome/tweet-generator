@@ -17,6 +17,11 @@ const openai = new OpenAIApi(configuration);
  * @param {object} res - The HTTP response object
  */
 export default async function (req, res) {
+  await NextCors(req, res, {
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200,
+  });
   // Check if the OpenAI API key is configured
   if (!configuration.apiKey) {
     res.status(500).json({
