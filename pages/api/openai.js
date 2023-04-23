@@ -3,6 +3,7 @@
 
 import { Configuration, OpenAIApi } from "openai";
 import defaultPrompts from "../../prompts/defaultPrompts";
+import NextCors from "nextjs-cors";
 
 // Create a configuration object with the OpenAI API key
 const configuration = new Configuration({
@@ -38,7 +39,7 @@ export default async function (req, res) {
   console.log("The payload is: ", payload);
 
   // Check if the payload is empty
-  if (payload.description.trim().length === 0) {
+  if (payload.trim().length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid input",
@@ -52,14 +53,7 @@ export default async function (req, res) {
 
   try {
     // Create a user message object
-    let filterMessage = `
-    Create a ${payload.topic} that explores ${payload.description}. 
-    It could be a personal experience, a social issue, an abstract concept, or a moment of inspiration. 
-    Use your poetic voice to convey the emotions, imagery, and depth of meaning associated with your chosen topic.
-    Experiment with different poetic forms, techniques, and styles to create a unique and expressive piece of art. 
-    Let your imagination soar and your words flow freely as you craft a poem that reflects your thoughts, feelings, and perspective on your chosen subject
-    
-    `
+    let filterMessage = `Generate a tweet for me on the topic of ${payload}`;
     const userMessage = {
       role: "user",
       content: filterMessage,

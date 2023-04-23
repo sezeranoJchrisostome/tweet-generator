@@ -1,11 +1,12 @@
-const TextInput = ({ value, onChange , suggention }) => {
+const TextInput = ({ value, onChange, suggention }) => {
   return (
     <input
+      autoComplete="false"
       type="text"
       value={value}
       onChange={onChange}
       className="text-input"
-      placeholder={`Generate a ${suggention} about:...`}
+      placeholder={`What do you want to generate about...?`}
     />
   );
 };

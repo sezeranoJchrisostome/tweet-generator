@@ -1,3 +1,4 @@
+import "@/styles/story.module.css";
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import { useState } from "react";
@@ -17,7 +18,7 @@ export default function Home() {
   const { data, error, loading } = useApi(
     "/api/openai",
     "POST",
-    submitValue,
+    { topic, description: submitValue },
     userMessages,
     assistantMessages
   );
@@ -45,18 +46,27 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <div className="form-container">
-          <h1 className={inter.className}>tweet Generator 🚀</h1>
-          <form>
-            <ResponseDisplay data={data} error={error} loading={loading} />
-            <TextInput
-              value={inputValue}
-              onChange={handleInputChange}
-              suggention={topic}
-            />
-            <SubmitButton onClick={handleSubmit} disabled={loading} />
-          </form>
+        <h1 className={inter.className}>tweets generator</h1>
+        <div className="">
+
         </div>
+        <form>
+          <ResponseDisplay data={data} error={error} loading={loading} />
+          <label>Topic</label>
+          <select
+            className="text-input"
+            onChange={(e) => setTopic(e.target.value)}
+          >
+            <option value="poem">Poem</option>
+            <option value="short story">short story</option>
+          </select>
+          <TextInput
+            value={inputValue}
+            onChange={handleInputChange}
+            suggention={topic}
+          />
+          <SubmitButton onClick={handleSubmit} disabled={loading} />
+        </form>
       </main>
     </>
   );
